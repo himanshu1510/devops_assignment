@@ -1,0 +1,29 @@
+version: "3.9"
+
+networks:
+  mynetwork:
+
+services:
+  nginx:
+    image: nginx
+    ports:
+    - "8080:80"
+    volumes:
+    - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+    - mynetwork
+ 
+
+  myweb:
+    container_name: myweb
+    image: php:7.3-apache
+    ports:
+    - "80:80"
+    volumes:
+    - ./webpage/:/var/www/html/
+    networks:
+    - mynetwork
+
+
+
+      
